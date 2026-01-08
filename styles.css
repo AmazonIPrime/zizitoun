@@ -1,0 +1,383 @@
+/* ============================================
+   Desktop Mate - Styles
+   Premium glassmorphism design
+   ============================================ */
+
+:root {
+    --primary: #ff6b9d;
+    --primary-dark: #e91e63;
+    --secondary: #7c4dff;
+    --accent: #00e5ff;
+    --bg-glass: rgba(255, 255, 255, 0.1);
+    --bg-glass-dark: rgba(0, 0, 0, 0.3);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --border-glass: rgba(255, 255, 255, 0.2);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --blur: blur(20px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* ============================================
+   Canvas Container
+   ============================================ */
+
+#canvas-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#mate-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: grab;
+}
+
+#mate-canvas:active {
+    cursor: grabbing;
+}
+
+/* ============================================
+   Context Menu
+   ============================================ */
+
+.context-menu {
+    position: fixed;
+    min-width: 180px;
+    background: var(--bg-glass-dark);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 8px;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    animation: menuAppear 0.2s ease-out;
+}
+
+@keyframes menuAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    color: var(--text-primary);
+}
+
+.mate-name {
+    font-weight: 600;
+    font-size: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.mate-mood {
+    font-size: 18px;
+}
+
+.menu-divider {
+    height: 1px;
+    background: var(--border-glass);
+    margin: 4px 8px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+}
+
+.menu-item:active {
+    transform: scale(0.98);
+}
+
+.menu-icon {
+    font-size: 16px;
+    width: 24px;
+    text-align: center;
+}
+
+.menu-item-settings {
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   Settings Panel
+   ============================================ */
+
+.settings-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    background: var(--bg-glass-dark);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    z-index: 1001;
+    animation: settingsAppear 0.3s ease-out;
+}
+
+@keyframes settingsAppear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.settings-header h2 {
+    font-size: 16px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.close-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-primary);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    background: rgba(255, 107, 157, 0.3);
+    transform: rotate(90deg);
+}
+
+.setting-group {
+    margin-bottom: 16px;
+}
+
+.setting-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.setting-group input[type="range"] {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    outline: none;
+}
+
+.setting-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.setting-group input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.setting-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.setting-group span {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ============================================
+   Loading Screen
+   ============================================ */
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(124, 77, 255, 0.3), transparent);
+    z-index: 2000;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading p {
+    margin-top: 16px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   Emotion Bubble
+   ============================================ */
+
+.emotion-bubble {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    background: var(--bg-glass-dark);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid var(--border-glass);
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    z-index: 999;
+    animation: bubbleAppear 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bubbleAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px) scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+#emotion-emoji {
+    font-size: 28px;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.hidden {
+    display: none !important;
+}
+
+/* ============================================
+   Scrollbar (if needed)
+   ============================================ */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}

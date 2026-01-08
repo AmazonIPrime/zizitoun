@@ -1,0 +1,63 @@
+{
+  "name": "desktop-mate",
+  "version": "1.0.0",
+  "description": "A cute 3D virtual pet companion for your desktop",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --enable-logging",
+    "build": "electron-builder"
+  },
+  "keywords": [
+    "desktop-pet",
+    "virtual-pet",
+    "electron",
+    "three.js",
+    "3d",
+    "companion"
+  ],
+  "author": "Desktop Mate",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "@pixiv/three-vrm": "^3.4.4",
+    "three": "^0.160.0"
+  },
+  "build": {
+    "appId": "com.desktopmate.app",
+    "productName": "Desktop Mate",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!.git/**"
+    ],
+    "extraResources": [
+      {
+        "from": "scripts",
+        "to": "scripts"
+      }
+    ],
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico"
+    },
+    "portable": {
+      "artifactName": "DesktopMate-Portable.exe"
+    }
+  }
+}

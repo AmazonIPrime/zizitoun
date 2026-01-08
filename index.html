@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Mate - 3D Waifu</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Import Map for ES Modules -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./node_modules/three/build/three.module.js",
+                "three/examples/": "./node_modules/three/examples/",
+                "fflate": "./node_modules/three/examples/jsm/libs/fflate.module.js",
+                "@pixiv/three-vrm": "./node_modules/@pixiv/three-vrm/lib/three-vrm.module.js"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <script>
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
+            const loadingEl = document.getElementById('loading');
+            if (loadingEl) {
+                const p = document.createElement('p');
+                p.style.color = '#ff4444';
+                p.style.fontSize = '12px';
+                p.textContent = `Global Error: ${msg} (Line ${lineNo})`;
+                loadingEl.appendChild(p);
+            }
+            return false;
+        };
+        // Catch unhandled promise rejections too
+        window.onunhandledrejection = function (event) {
+            const loadingEl = document.getElementById('loading');
+            if (loadingEl) {
+                const p = document.createElement('p');
+                p.style.color = '#ff4444';
+                p.style.fontSize = '12px';
+                p.textContent = `Promise Error: ${event.reason}`;
+                loadingEl.appendChild(p);
+            }
+        };
+    </script>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loader"></div>
+        <p>Chargement de la waifu...❌</p>
+    </div>
+
+    <!-- 3D Canvas -->
+    <canvas id="mate-canvas"></canvas>
+
+    <!-- Emotion Bubble -->
+    <div id="emotion-bubble" class="hidden">
+        <span id="emotion-emoji">💖</span>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="hidden">
+        <button class="menu-item" data-action="wave">
+            <span class="menu-icon">👋</span>
+            <span>Saluer</span>
+        </button>
+        <button class="menu-item" data-action="dance">
+            <span class="menu-icon">💃</span>
+            <span>Danser</span>
+        </button>
+        <button class="menu-item" data-action="sit">
+            <span class="menu-icon">🧘</span>
+            <span>Se reposer</span>
+        </button>
+        <button class="menu-item" data-action="jump">
+            <span class="menu-icon">🦘</span>
+            <span>Sauter</span>
+        </button>
+        <div class="menu-divider"></div>
+        <button class="menu-item" data-action="walk-random">
+            <span class="menu-icon">🚶</span>
+            <span>Se balader</span>
+        </button>
+        <button class="menu-item" data-action="stay">
+            <span class="menu-icon">📍</span>
+            <span>Rester ici</span>
+        </button>
+        <div class="menu-divider"></div>
+        <button class="menu-item" data-action="settings">
+            <span class="menu-icon">⚙️</span>
+            <span>Paramètres</span>
+        </button>
+    </div>
+
+    <!-- Settings Panel -->
+    <div id="settings-panel" class="hidden">
+        <div class="settings-header">
+            <h3>⚙️ Paramètres</h3>
+            <button id="close-settings" class="close-btn">✕</button>
+        </div>
+        <div class="settings-content">
+            <div class="setting-item">
+                <label>Taille du personnage</label>
+                <div class="slider-container">
+                    <input type="range" id="size-slider" min="50" max="150" value="100">
+                    <span id="size-value">100%</span>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Vitesse d'animation</label>
+                <div class="slider-container">
+                    <input type="range" id="speed-slider" min="50" max="200" value="100">
+                    <span id="speed-value">100%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="renderer.js"></script>
+</body>
+
+</html>
