@@ -8,7 +8,7 @@
 ### Étapes
 
 ```bash
-cd zizitoun
+#dans lprojet
 npm install
 npm start
 ```
